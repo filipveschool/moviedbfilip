@@ -11,5 +11,6 @@ npm-debug.log
 yarn-error.log
 .env
 _ide_helper.php
+.phpstorm.meta.php
 /bourbon
 /resources/assets/funky_themebackup/*
