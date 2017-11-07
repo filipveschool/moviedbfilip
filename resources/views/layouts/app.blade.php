@@ -41,6 +41,7 @@
 <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://use.fontawesome.com/6fedb4a016.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Fonts -->
     @yield('fonts')
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans"/>
@@ -53,7 +54,7 @@
     @include('partials.defaultnavbar')
 
     @yield('content')
-    
+
 </div>
 
 <!-- Scripts -->

@@ -20,9 +20,10 @@ class CreateMoviesTable extends Migration
             //TODO belongs to collection nog uitwerken
             $table->string('budget')->nullable();
             //TODO genres nog uitwerken
+            $table->string('genre')->nullable();
             $table->string('homepageurl')->nullable();
-            $table->integer('tmdb_id')->nullable();
-            $table->string('imdb_id')->nullable();
+            $table->integer('tmdb_id')->nullable()->unique();
+            $table->string('imdb_id')->nullable()->unique();
             $table->string('original_language')->nullable();
             $table->string('original_title')->nullable();
             $table->text('overview')->nullable();

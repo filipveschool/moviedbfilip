@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {
+
+    function __construct()
+    {
+
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,10 @@ class MovieController extends Controller
      */
     public function index()
     {
-        //
+        $movie = Movie::where('tmdb_id', 120)->first();
+        //$date = new Date($movie->release_date);
+        $date = $movie->release_date;
+        return view('welcome', compact('movie', 'date'));
     }
 
     /**
@@ -38,12 +48,15 @@ class MovieController extends Controller
 
         $input = request()->all();
         //dd(request()->get('name'));
-        $name = request()->get('name');
+        $name = request()->get('title');
+        Movie::create($input);
+        /*
         Movie::create(
                 [
                         'title' => $name
                 ]
         );
+        */
         //dd($input);
 
         //return response()->json(['success' => 'Got Simple Ajax Request.']);
@@ -62,7 +75,19 @@ class MovieController extends Controller
      */
     public function show(Movie $movie)
     {
-        //
+
+
+        return view('movies.show');
+    }
+
+    public function showmovie()
+    {
+        $movie = Movie::where('tmdb_id', 120)->first();
+        $background = 'https://image.tmdb.org/t/p/original/' . $movie->background;
+        $poster = 'https://image.tmdb.org/t/p/original/' . $movie->poster;
+
+        return view('movies.show', compact('movie', 'background', 'poster'));
+
     }
 
     /**
@@ -98,4 +123,16 @@ class MovieController extends Controller
     {
         //
     }
+
+
+    // Custom views
+
+    /**
+     * View to show all top rated movies from 10-0 score from tmdb.com
+     */
+    public function getTopRatedMoviesOverview()
+    {
+        return view('movies.topRatedOverview');
+    }
+
 }

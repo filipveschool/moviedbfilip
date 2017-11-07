@@ -24,7 +24,16 @@ Route::get('/movie', function () {
 });
 
 Route::resource('movies', 'MovieController');
+Route::resource('shows', 'ShowController');
 
-Route::get('ajaxRequest', 'HomeController@ajaxRequest');
+Route::get('movieshow', 'MovieController@showmovie');
 
-Route::post('ajaxRequest', 'HomeController@ajaxRequestPost');
+//Route::get('ajaxRequest', 'HomeController@ajaxRequest');
+
+//Route::post('ajaxRequest', 'HomeController@ajaxRequestPost');
+
+
+//media
+
+//Pages routes
+Route::resource('pages', 'PageController')->except('index', 'update');

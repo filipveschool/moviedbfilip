@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Show;
 use Illuminate\Http\Request;
+use Tmdb\Laravel\Facades\Tmdb;
 
 class ShowController extends Controller
 {
@@ -14,7 +15,34 @@ class ShowController extends Controller
      */
     public function index()
     {
-        //
+        $show = Tmdb::getTvApi()->getTvshow(1434);
+        $characters = Tmdb::getTvApi()->getCredits(1434);
+        $external = Tmdb::getTvApi()->getExternalIds(1434);
+
+        //$background = 'https://image.tmdb.org/t/p/original/' . $show->backdrop_path;
+        //$poster = 'https://image.tmdb.org/t/p/original/' . $show->poster_path;
+
+        $genres = $show['genres'];
+        $createdby = $show['created_by'];
+        $networks = $show['networks'];
+
+        $arraymerged = array_merge($networks, $createdby);
+
+        //dd($characters['cast']);
+
+        //dd($arr);
+
+        //dd($genres);
+
+        foreach ($genres as $genre) {
+            //dd($result['title']);
+            //dd($genre);
+        };
+
+        //dd($show);
+
+        return view('shows.show', compact('show', 'genres', 'arraymerged', 'characters', 'external'));
+
     }
 
     /**
@@ -30,7 +58,7 @@ class ShowController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +69,7 @@ class ShowController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Show  $show
+     * @param  \App\Models\Show $show
      * @return \Illuminate\Http\Response
      */
     public function show(Show $show)
@@ -52,7 +80,7 @@ class ShowController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Show  $show
+     * @param  \App\Models\Show $show
      * @return \Illuminate\Http\Response
      */
     public function edit(Show $show)
@@ -63,8 +91,8 @@ class ShowController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Show  $show
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\Show $show
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Show $show)
@@ -75,7 +103,7 @@ class ShowController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Show  $show
+     * @param  \App\Models\Show $show
      * @return \Illuminate\Http\Response
      */
     public function destroy(Show $show)

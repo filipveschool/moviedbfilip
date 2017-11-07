@@ -141,7 +141,28 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                data: {id: value.id, name: value.title},
+                data: {
+                    //id: value.id,
+                    title: value.title,
+                    background: value.backdrop_path,
+                    budget: value.budget,
+                    homepageurl: value.homepage,
+                    tmdb_id: value.id,
+                    imdb_id: value.imdb_id,
+                    original_language: value.original_language,
+                    original_title: value.original_title,
+                    overview: value.overview,
+                    tmdb_popularity: value.popularity,
+                    poster: value.poster_path,
+                    release_date: value.release_date,
+                    revenue: value.revenue,
+                    runtime: value.runtime,
+                    status: value.status,
+                    tagline: value.tagline,
+                    tmdb_rating: value.vote_average,
+                    tmdb_vote_count: value.vote_count,
+
+                },
                 success: function (response) {
                     console.log(response.success);
                     alert(response.success);
