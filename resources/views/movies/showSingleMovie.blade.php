@@ -47,8 +47,40 @@
 
 @push('afterscriptsstack')
 
+    <script type="text/javascript">
+        /*
+
+                $.ajaxSetup({
+
+                    headers: {
+
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+                    }
+
+                });
+
+
+                var id = 12;
+                var name = 'filipjsonsuccess';
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/ajaxRequest',
+                    data: {id: id, name: name},
+                    success: function (response) {
+                        console.log(response.success);
+                        //alert(response.success);
+
+                    }
+                });*/
+    </script>
+
+
     <script type="">
         //https://developers.themoviedb.org/3/discover
+
+
         var settings = {
             "async": true,
             "crossDomain": true,
@@ -63,7 +95,6 @@
 
 
             var trHtml2 = '';
-            //$.each(response.results, function (index, value) {
             var value = response;
 
             trHtml2 += '<tr>';
@@ -88,12 +119,39 @@
             trHtml2 += '<td><a href="https://image.tmdb.org/t/p/w342/' + value.backdrop_path + '">' + value.backdrop_path + '</a></td>';
             trHtml2 += '<td><img src="https://image.tmdb.org/t/p/w342/' + value.backdrop_path + '"></td>';
             trHtml2 += '</tr>';
-            //});
-
             $('#moviesoverviewlist').append(trHtml2);
+
+            /*
+            $.ajaxSetup({
+
+                headers: {
+
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+                }
+
+            });
+            */
+
+            //Eerst de data ophalen en nadien naar de database saven
+            $.ajax({
+                type: 'POST',
+                //url: '/ajaxRequest',
+                url: '/movies',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {id: value.id, name: value.title},
+                success: function (response) {
+                    console.log(response.success);
+                    alert(response.success);
+
+                }
+            });
         });
 
 
     </script>
+
 
 @endpush

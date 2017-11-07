@@ -22,3 +22,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/movie', function () {
     return view('movies.showSingleMovie');
 });
+
+Route::resource('movies', 'MovieController');
+
+Route::get('ajaxRequest', 'HomeController@ajaxRequest');
+
+Route::post('ajaxRequest', 'HomeController@ajaxRequestPost');
